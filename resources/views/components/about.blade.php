@@ -54,8 +54,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Nếu bạn có footer -->
+    @include('components.footer')
 </body>
 
 </html>

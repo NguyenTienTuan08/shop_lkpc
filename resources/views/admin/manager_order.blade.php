@@ -55,7 +55,7 @@
     </aside>
 
     <main class="flex-1 p-6">
-        <h2 class="text-2xl font-bold mb-4 text-gray-700">Danh Sách Đơn Hàng</h2>
+        <h2 class="text-2xl font-bold mb-4 text-gray-700">Quản Lý Đơn Hàng</h2>
 
         <div class="overflow-x-auto bg-white rounded-lg shadow">
             <table class="min-w-full divide-y divide-gray-200 text-sm">

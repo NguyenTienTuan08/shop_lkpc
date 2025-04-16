@@ -13,6 +13,26 @@
 
     <div class="container mx-auto px-4 py-10">
         <h2 class="text-3xl font-bold text-blue-700 mb-6 text-center">📦 Đơn Hàng Của Tôi</h2>
+        <div class="flex justify-center mb-8 space-x-3">
+            @php
+            $statuses = ['Chờ xử lý', 'Đang giao', 'Đã giao', 'Đã hủy'];
+            @endphp
+            <a href="{{ route('orders.my') }}"
+                class="px-4 py-2 rounded-lg font-medium transition
+            {{ !isset($status) ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                Tất cả
+            </a>
+            @foreach($statuses as $stt)
+            <a href="{{ route('orders.filter', $stt) }}"
+                class="px-4 py-2 rounded-lg font-medium transition
+                {{ (isset($status) && $status == $stt) ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
+                {{ $stt }}
+            </a>
+            @endforeach
+
+
+
+        </div>
 
         @if(session('success'))
         <div class="bg-green-100 text-green-800 p-3 rounded mb-4 text-center">

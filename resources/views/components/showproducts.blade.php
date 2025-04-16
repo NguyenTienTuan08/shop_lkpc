@@ -9,6 +9,7 @@ $categoriesList = [
 'ManHinh' => 'Màn Hình'
 ];
 @endphp
+
 <div class="container mx-auto mt-10"> <!-- Tiêu đề Danh Mục Sản Phẩm -->
 
 
@@ -33,7 +34,11 @@ $categoriesList = [
         @foreach($products as $product)
         <div class="p-6 bg-white shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
             <img src="{{ asset('images/' . $product->hinhanh) }}" class="w-72 h-72 object-cover rounded-md mb-4" alt="{{ $product->tensanpham }}">
-            <h3 class="text-lg font-medium text-gray-800">{{ $product->tensanpham }}</h3>
+            <h3 class="text-lg font-medium text-gray-800">
+                <a href="{{ route('product.details', ['id' => $product->id]) }}" class="hover:underline text-blue-600">
+                    {{ $product->tensanpham }}
+                </a>
+            </h3>
             <p class="text-gray-600 mt-2">Price: {{ number_format($product->dongia) }} VNĐ</p>
             <p class="text-sm text-gray-500 mt-2">
                 Tình Trạng:

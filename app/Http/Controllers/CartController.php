@@ -13,7 +13,9 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->product_id);
         $username = Auth::user()->username;
-
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thêm vào giỏ hàng.');
+        }
         // Kiểm tra sản phẩm đã có trong giỏ chưa
         $existingCart = Cart::where('username', $username)
             ->where('product_id', $product->id)
@@ -40,6 +42,9 @@ class CartController extends Controller
     }
     public function showCart()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thêm vào giỏ hàng.');
+        }
         $username = Auth::user()->username;
         $cartItems = Cart::where('username', $username)->get();
         $total = $cartItems->sum('thanhtien');
@@ -48,6 +53,9 @@ class CartController extends Controller
     }
     public function removeItem($id)
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thêm vào giỏ hàng.');
+        }
         $username = Auth::user()->username;
 
         // Dùng cart_id để xóa
@@ -78,6 +86,9 @@ class CartController extends Controller
     }
     public function checkout()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Vui lòng đăng nhập để thêm vào giỏ hàng.');
+        }
         $username = session('username'); // hoặc auth()->user()->username nếu bạn dùng Auth
         $cartItems = Cart::where('username', $username)->get();
         $total = $cartItems->sum('thanhtien');

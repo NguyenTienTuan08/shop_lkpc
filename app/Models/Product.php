@@ -17,4 +17,8 @@ class Product extends Model
         'phanloai',
         'status',
     ];
+    public function details()
+    {
+        return $this->hasOne(ProductDetail::class, 'product_id');
+    }
 }

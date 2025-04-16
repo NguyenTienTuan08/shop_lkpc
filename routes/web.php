@@ -93,3 +93,7 @@ Route::get('/orders', [AdminController::class, 'showOrders'])->name('admin.order
 Route::get('/orders/{id}', [AdminController::class, 'viewOrderDetail'])->name('admin.orders.detail');
 Route::post('/orders/{id}/update', [AdminController::class, 'updateOrderStatus'])->name('admin.orders.update');
 Route::delete('/orders/{id}/delete', [AdminController::class, 'deleteOrder'])->name('admin.orders.delete');
+Route::get('/product/{id}', [ProductController::class, 'showDetails'])->name('product.details');
+
+Route::get('/my-orders', [OrderController::class, 'myOrders'])->name('orders.my');
+Route::get('/my-orders/status/{status}', [OrderController::class, 'filterByStatus'])->name('orders.filter');

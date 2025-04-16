@@ -202,4 +202,27 @@ class OrderController extends Controller
 
         return back()->with('error', 'Chỉ có thể xoá các đơn hàng đã huỷ.');
     }
+
+    public function myOrders()
+    {
+        $username = Auth::user()->username;
+        $orders = Order::with('orderDetails')
+            ->where('username', $username)
+            ->orderByDesc('order_id')
+            ->get();
+
+        return view('member.order_user', compact('orders'));
+    }
+
+    public function filterByStatus($status)
+    {
+        $username = Auth::user()->username;
+        $orders = Order::with('orderDetails')
+            ->where('username', $username)
+            ->where('delivery', $status)
+            ->orderByDesc('order_id')
+            ->get();
+
+        return view('member.order_user', compact('orders', 'status'));
+    }
 }

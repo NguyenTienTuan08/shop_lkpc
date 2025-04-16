@@ -156,4 +156,10 @@ class ProductController extends Controller
         // Truyền dữ liệu vào view trang chủ
         return view('layouts.app', compact('categories', 'products'));
     }
+
+    public function showDetails($id)
+    {
+        $product = Product::with('details')->findOrFail($id);
+        return view('components.products_details', compact('product'));
+    }
 }
